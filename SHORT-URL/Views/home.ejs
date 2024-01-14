@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+       Shorten URL
+    </h1>
+    <% if (locals.id){ %>
+    <p>
+        URL generated :- http://localhost:8000/URL/<%=id %>
+    </p>
+    <% } if (locals.jsonObj){ %>
+        <table>
+            <thead>
+                <th>sl No.</th>
+                <th>Redirect URL</th>
+                <th>Short URL id</th>
+                <th>count</th>
+            </thead>
+            <tbody>
+        <% for( let index = 0; index < jsonObj.length; index++ ) { %>
+        <% if (jsonObj[index].createdBy==userId) { %>
+            <tr>
+                <td><%=index+1%></td>
+                <td><%=jsonObj[index].url%></td>
+                <td><%=jsonObj[index].id%></td>
+                <td><%=jsonObj[index].count%></td>
+            </tr>
+        <% } %>
+
+        
+        <% } %>
+        </tbody>
+        </table>
+        <% } %>
+
+ 
+         
+         
+    <div>
+        <form method="POST" action="/URL">
+            <label> Enter the Redirect URL</label>
+            <input type="text" name="url" placeholder="https//:example.com">
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+    </body>
+</body>
+</html>

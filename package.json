@@ -1,0 +1,12 @@
+{
+  "name": "piyushgargnode",
+  "version": "1.0.0",
+  "description": "firstNodeApp",
+  "main": "HelloWorld.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node HelloWorld"
+},
+  "author": "",
+  "license": "ISC"
+}
