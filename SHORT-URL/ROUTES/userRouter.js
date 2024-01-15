@@ -39,5 +39,5 @@ userRouter.post("/login",(req,res)=>{
     return res.render("login",{err:"wrong user Id or password"});
     
 })
-
+ 
 module.exports={userRouter};
