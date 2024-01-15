@@ -20,10 +20,27 @@ function simpleAuthMiddleware(req,res,next){
 }
 function jwtwAuthMiddleware(req,res,next){
     
+    const uuid= req.cookies?.sessionId;
+    const uuidUser=getUserFromUuid(uuid);
+    req.user=uuidUser;
+    //console.log(req);
     const token= req.cookies?.token;
-    if(validateToken(token))
+    if(uuidUser&& token && validateToken(token))
     next();
     else 
     return res.redirect("/login");
 }
-module.exports={authMiddleware,simpleAuthMiddleware};
+
+function jwtwAuthMiddlewareHeaders(req,res,next){
+    
+    const uuid= req.cookies?.sessionId;
+    const uuidUser=getUserFromUuid(uuid);
+    req.user=uuidUser;
+    //console.log(req);
+    const token= req.Headers[authorization].split("Bearer ")[1];
+    if(uuidUser&& token && validateToken(token))
+    next();
+    else 
+    return res.redirect("/login");
+}
+module.exports={authMiddleware,simpleAuthMiddleware,jwtwAuthMiddleware};

@@ -14,6 +14,7 @@ function setjwtToken(user){
 
 }
 function validateToken(token){
+    console.log(jwt.verify(token,secretKey));
     return jwt.verify(token,secretKey);
 }
 module.exports={setUuidToUser,getUserFromUuid,setjwtToken,validateToken}

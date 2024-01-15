@@ -6,7 +6,7 @@ const cookieParser= require("cookie-parser");
 const PORT=8000;
 const path = require("path");
 const app=express();
-const {authMiddleware,simpleAuthMiddleware}=require("./middleware");
+const {authMiddleware,simpleAuthMiddleware,jwtwAuthMiddleware}=require("./middleware");
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
 app.set("view engine","ejs");
@@ -17,7 +17,8 @@ app.get("/abc",(req,res)=>{
     })
     //end("abc");
 })
-app.use("/URL",authMiddleware,shorternerRouter);
+//app.use("/URL",authMiddleware,shorternerRouter);
+app.use("/URL",jwtwAuthMiddleware,shorternerRouter);
 app.use("/usr",userRouter);
 app.use("/",simpleAuthMiddleware,staticRouter);
 

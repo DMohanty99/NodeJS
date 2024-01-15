@@ -28,9 +28,11 @@ userRouter.post("/login",(req,res)=>{
                 setUuidToUser(uuid,userJsonObj[i]);
 
                 res.cookie("sessionId",uuid);
-                res.cookie("token",setjwtToken(userJsonObj[i]));
+                let token=setjwtToken(userJsonObj[i]);
+                res.cookie("token",token);
                 
-                return res.redirect("/");
+                
+                return res.status(200).json({"token ":token}).redirect("/");
             }
         }
     }
