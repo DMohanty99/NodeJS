@@ -24,7 +24,7 @@
             </thead>
             <tbody>
         <% for( let index = 0; index < jsonObj.length; index++ ) { %>
-        <% if (jsonObj[index].createdBy==userId) { %>
+        <% if (jsonObj.hasOwnProperty('admin')||jsonObj[index].createdBy==userId) { %>
             <tr>
                 <td><%=index+1%></td>
                 <td><%=jsonObj[index].url%></td>

@@ -21,6 +21,15 @@ function handleShortenUrl(req,res)
         })
     }
 }
+function handleUrlAdmin(req,res)
+{
+    
+       return res.render("home",{
+                jsonObj:jsonObj,
+                userId:req.user.id,
+                admin:true
+            })     
+}
 
 function handleGetLongURL(req,res){
     const id =req.params.id;
@@ -55,9 +64,11 @@ function handleURLAnalytics(req,res){
 
 }
 
+
 module.exports={
     handleShortenUrl,
     handleGetLongURL,
     handleURLAnalytics,
+    handleUrlAdmin
 
 }

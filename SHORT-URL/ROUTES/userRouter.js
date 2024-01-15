@@ -32,7 +32,7 @@ userRouter.post("/login",(req,res)=>{
                 res.cookie("token",token);
                 
                 
-                return res.status(200).json({"token ":token}).redirect("/");
+                return res.status(200).redirect("/");
             }
         }
     }

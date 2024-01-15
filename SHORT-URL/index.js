@@ -6,7 +6,7 @@ const cookieParser= require("cookie-parser");
 const PORT=8000;
 const path = require("path");
 const app=express();
-const {authMiddleware,simpleAuthMiddleware,jwtwAuthMiddleware,jwtwAuthMiddlewareHeaders}=require("./middleware");
+const {authMiddleware,simpleAuthMiddleware,jwtwAuthMiddleware,jwtwAuthMiddlewareHeaders,jwtwAuthorizationMiddlewareHeaders}=require("./middleware");
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
 app.set("view engine","ejs");
@@ -17,9 +17,12 @@ app.get("/abc",(req,res)=>{
     })
     //end("abc");
 })
-//app.use("/URL",authMiddleware,shorternerRouter);
-app.use("/URL",jwtwAuthMiddlewareHeaders,shorternerRouter);
-app.use("/usr",userRouter);
 app.use("/",simpleAuthMiddleware,staticRouter);
+app.use("/usr",userRouter);
+app.use(jwtwAuthMiddleware);
+//app.use("/URL",authMiddleware,shorternerRouter);
+app.use("/URL",shorternerRouter);
+
+
 
 app.listen(PORT,()=>{console.log("server started")});

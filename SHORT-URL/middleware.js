@@ -43,4 +43,15 @@ function jwtwAuthMiddlewareHeaders(req,res,next){
     else 
     return res.redirect("/login");
 }
-module.exports={authMiddleware,simpleAuthMiddleware,jwtwAuthMiddleware,jwtwAuthMiddlewareHeaders};
+
+function jwtwAuthorizationMiddlewareHeaders(role=[]){
+    
+    return (req,res,next)=>{
+        if(!req.user) return res.redirect("/login");
+        if(role.includes(req.user.role)){
+            return next();
+        }
+        return res.send("Unauthorized");
+    }
+}
+module.exports={authMiddleware,simpleAuthMiddleware,jwtwAuthMiddleware,jwtwAuthMiddlewareHeaders,jwtwAuthorizationMiddlewareHeaders};
